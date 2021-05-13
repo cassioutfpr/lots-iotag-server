@@ -1,0 +1,2 @@
+Now the file has more content!Buraco/nTipo: Buraco, Lat: -25.3976868, Lng: -49.2626783
+Tipo: Buraco, Lat: -25.397693099999998, Lng: -49.262671
