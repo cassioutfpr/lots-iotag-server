@@ -1,2 +1,2 @@
-web: gunicorn --bind 0.0.0.0:$PORT lots-iotag-server:app
+web: gunicorn lots-iotag-server:app
 
