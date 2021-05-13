@@ -19,8 +19,8 @@ def nao_entre_em_panico():
 
 @app.route('/check',  methods=['GET', 'POST', 'OPTIONS'])
 def check():
-    print('ioa')
-    return jsonify({"42": "a resposta para a vida, ouniverso e tudo mais"})
+    f = open("apontamentos.txt", "r")
+    return jsonify({"answer": f.read()})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
