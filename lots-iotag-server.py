@@ -6,21 +6,27 @@ import logging
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/',  methods=['GET', 'POST'])
+@app.route('/write',  methods=['GET', 'POST'])
 def nao_entre_em_panico():
-    print(request.data)
-    print('ioa')
-    app.logger.warning('testing warning log')
-    data = request.json
+    data_array = request.json
+    arrayString = ''
+    for item in data_array['apnt']:
+        arrayString += "\n" + "Tipo: " + item['type_ap'] + ", Lat: " + str(item['lat']) + ", Lng: " + str(item['lng'])
+    
     f = open("apontamentos.txt", "a")
-    f.write("\n" + "Tipo: " + data['ap_type'] + ", Lat: " + str(data['lat']) + ", Lng: " + str(data['lng']))
+    f.write(arrayString)
     f.close()
     return jsonify({"42": "a resposta para a vida, ouniverso e tudo mais"})
 
-@app.route('/check',  methods=['GET', 'POST', 'OPTIONS'])
+@app.route('/',  methods=['GET', 'POST', 'OPTIONS'])
 def check():
     f = open("apontamentos.txt", "r")
     return jsonify({"answer": f.read()})
+
+@app.route('/erase',  methods=['GET', 'POST', 'OPTIONS'])
+def erase():
+    f = open('apontamentos.txt', 'w').close()
+    return jsonify({"answer": 'apagado'})
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
