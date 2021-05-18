@@ -11,7 +11,8 @@ def nao_entre_em_panico():
     data_array = request.json
     arrayString = ''
     for item in data_array['apnt']:
-        arrayString += "\n" + "Tipo: " + item['type_ap'] + ", Lat: " + str(item['lat']) + ", Lng: " + str(item['lng'])
+        arrayString += "\n" + "Veiculo:" + item['vehicle'] + "Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
+
     
     f = open("apontamentos.txt", "a")
     f.write(arrayString)
@@ -23,7 +24,7 @@ def check():
     f = open("apontamentos.txt", "r")
     return jsonify({"answer": f.read()})
 
-@app.route('/erase',  methods=['GET', 'POST', 'OPTIONS'])
+@app.route('/erase-document-4679',  methods=['POST', 'OPTIONS'])
 def erase():
     f = open('apontamentos.txt', 'w').close()
     return jsonify({"answer": 'apagado'})
