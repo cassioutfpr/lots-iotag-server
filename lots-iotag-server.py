@@ -6,7 +6,7 @@ import logging
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/write',  methods=['GET', 'POST', 'OPTIONS'])
+@app.route('/write',  methods=['GET', 'POST'])
 def writeToDocument():
     data_array = request.json
     arrayString = ''
