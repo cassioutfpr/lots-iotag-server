@@ -7,17 +7,17 @@ app = Flask(__name__)
 cors = CORS(app)
 
 @app.route('/write',  methods=['GET', 'POST'])
-def nao_entre_em_panico():
+def writeToDocument():
     data_array = request.json
     arrayString = ''
     for item in data_array['apnt']:
-        arrayString += "\n" + "Veiculo:" + item['vehicle'] + "Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
+        arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
 
     
     f = open("apontamentos.txt", "a")
     f.write(arrayString)
     f.close()
-    return jsonify({"42": "a resposta para a vida, ouniverso e tudo mais"})
+    return jsonify({"write": "success"})
 
 @app.route('/',  methods=['GET', 'POST', 'OPTIONS'])
 def check():
