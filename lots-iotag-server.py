@@ -17,6 +17,10 @@ def writeToDocument():
     f = open("apontamentos.txt", "a")
     f.write(arrayString)
     f.close()
+
+    f = open("apontamentosPy.py", "a")
+    f.write(arrayString)
+    f.close()
     return jsonify({"write": "success"})
 
 @app.route('/',  methods=['GET', 'POST', 'OPTIONS'])
@@ -24,9 +28,19 @@ def check():
     f = open("apontamentos.txt", "r")
     return jsonify({"answer": f.read()})
 
+@app.route('/py',  methods=['GET', 'POST', 'OPTIONS'])
+def checkPy():
+    f = open("apontamentosPy.py", "r")
+    return jsonify({"answer": f.read()})
+
 @app.route('/erase-document-4679',  methods=['POST', 'OPTIONS'])
 def erase():
     f = open('apontamentos.txt', 'w').close()
+    return jsonify({"answer": 'apagado'})
+
+@app.route('/erasePy',  methods=['GET', 'POST', 'OPTIONS'])
+def erasePy():
+    f = open('apontamentosPy.py', 'w').close()
     return jsonify({"answer": 'apagado'})
 
 if __name__ == "__main__":
