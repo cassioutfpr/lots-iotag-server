@@ -17,9 +17,7 @@ def writeToDocument():
     data_array = request.json
     arrayString = ''
     for item in data_array['apnt']:
-        arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:"
-        + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
-
+        arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
 
     ts = calendar.timegm(time.gmtime())
     print(ts)
