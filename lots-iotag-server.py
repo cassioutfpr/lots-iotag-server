@@ -18,7 +18,8 @@ def writeToDocument():
     arrayString = ''
     for item in data_array['apnt']:
         arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
-
+        if 'nota' in item:
+            arrayString += ",Nota:" + str(item['nota'])
 
     ts = calendar.timegm(time.gmtime())
     print(ts)
@@ -33,18 +34,6 @@ def writeToDocument():
     f.close()
 
     return jsonify({"write": "success"})
-
-@app.route("/upload", methods=["POST"])
-def upload():
-    uploaded_files = request.files.getlist("file[]")
-    conn = S3Connection(os.environ['AWS_ID'], os.environ['AWS_PASSWORD'])
-    b = conn.get_bucket('apontamentos')
-    for file in uploaded_files:
-        k = Key(b)
-        k.key = file.filename
-        k.set_contents_from_file(file)
-        print(file.filename)
-    return ""
 
 @app.route('/',  methods=['GET', 'POST', 'OPTIONS'])
 def check():
