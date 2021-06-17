@@ -18,8 +18,6 @@ def writeToDocument():
     arrayString = ''
     for item in data_array['apnt']:
         arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
-        if item['nota'] is not None:
-            arrayString += ",Nota:" + str(item['nota'])
 
 
     ts = calendar.timegm(time.gmtime())
