@@ -20,6 +20,8 @@ def writeToDocument():
         arrayString += "\n" + "Veiculo:" + item['vehicle'] + ",Tipo:" + item['type_ap'] + ",Lat:" + str(item['lat']) + ",Lng:" + str(item['lng']) + ",Time:" + str(item['timestamp'])
         if 'nota' in item:
             arrayString += ",Nota:" + str(item['nota'])
+        if 'foto' in item:
+            arrayString += ",Foto:" + str(item['foto'])
 
     ts = calendar.timegm(time.gmtime())
     print(ts)
