@@ -42,6 +42,10 @@ def check():
     f = open("apontamentos.txt", "r")
     return jsonify({"answer": f.read()})
 
+@app.route('/ip',  methods=['GET', 'OPTIONS'])
+def ip():
+    return jsonify({"answer": os.environ['IP']})
+
 
 @app.route('/erase-document-4679',  methods=['POST', 'OPTIONS'])
 def erase():
